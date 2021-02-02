@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OOP3
 {
@@ -12,10 +13,21 @@ namespace OOP3
 
             ICreditBaseManager housingCreditManager = new HousingCreditManager();
 
-            ApplyManager applymanager = new ApplyManager();
-            applymanager.Apply(vehicleCreditManager);
+            ILoggerService dataBaseLoggerService = new DatabaseLoggerService();
+           
+            ILoggerService fileBaseLoggerService = new FilebaseLoggerService();
+           
+            ApplyManager applyManager = new ApplyManager();
+            
+            applyManager.Apply(vehicleCreditManager,fileBaseLoggerService);
+
+            List<ICreditBaseManager> credits = new List<ICreditBaseManager>() {requirementManager, vehicleCreditManager };
             
 
         }
+        
+
+        }
+
+        
     }
-}
